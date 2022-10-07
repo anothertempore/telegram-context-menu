@@ -1,9 +1,3 @@
-import { memo } from "react";
-
-import "./Separator.css";
-
-function Separator() {
+export default function Separator() {
   return <div className="Separator" />;
 }
-
-export default memo(Separator);
