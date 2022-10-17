@@ -11,8 +11,17 @@ import Menu from "./Menu";
 import MenuItem from "./MenuItem";
 import Separator from "./Separator";
 
+import { Player } from "@lottiefiles/react-lottie-player";
+import * as e1 from "../data/e1.json";
+import * as e2 from "../data/e2.json";
+import * as e3 from "../data/e3.json";
+import * as e4 from "../data/e4.json";
+import * as e5 from "../data/e5.json";
+import * as e6 from "../data/e6.json";
+import * as e7 from "../data/e7.json";
+
 export default function ContextMenu() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [style, setStyle] = useState<{
     menuContainerStyle: React.CSSProperties;
     menuStyle: React.CSSProperties;
@@ -41,6 +50,64 @@ export default function ContextMenu() {
 
   return (
     <div className="ContextMenu">
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Player
+          autoplay
+          src={e1}
+          controls={false}
+          hover
+          loop
+          style={{ height: "25px", width: "25px" }}
+        />
+        <Player
+          autoplay
+          src={e2}
+          controls={false}
+          hover
+          loop
+          style={{ height: "25px", width: "25px" }}
+        />
+        <Player
+          autoplay
+          src={e3}
+          controls={false}
+          hover
+          loop
+          style={{ height: "25px", width: "25px" }}
+        />
+        <Player
+          autoplay
+          src={e4}
+          controls={false}
+          hover
+          loop
+          style={{ height: "25px", width: "25px" }}
+        />
+        <Player
+          autoplay
+          src={e5}
+          controls={false}
+          hover
+          loop
+          style={{ height: "25px", width: "25px" }}
+        />
+        <Player
+          autoplay
+          src={e6}
+          controls={false}
+          hover
+          loop
+          style={{ height: "25px", width: "25px" }}
+        />
+        <Player
+          autoplay
+          src={e7}
+          controls={false}
+          hover
+          loop
+          style={{ height: "25px", width: "25px" }}
+        />
+      </div>
       <Menu
         isOpen={isOpen}
         onClose={() => {
