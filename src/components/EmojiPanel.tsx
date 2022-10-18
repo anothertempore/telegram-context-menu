@@ -15,13 +15,15 @@ export default function EmojiPanel() {
         // ...data,
       ].map((d, idx) => (
         <Player
+          className="Emoji"
           key={idx}
           autoplay
           src={d}
           controls={false}
           hover
-          loop
-          style={{ height: "35px", width: "35px" }}
+          speed={1.5}
+          // loop
+          style={{ height: "32px", width: "32px" }}
         />
       ))}
     </div>

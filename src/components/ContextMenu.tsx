@@ -13,7 +13,7 @@ import Separator from "./Separator";
 import EmojiPanel from "./EmojiPanel";
 
 export default function ContextMenu() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [style, setStyle] = useState<{
     menuContainerStyle: React.CSSProperties;
     menuStyle: React.CSSProperties;
