@@ -10,22 +10,14 @@ import React, { useEffect, useState } from "react";
 import Menu from "./Menu";
 import MenuItem from "./MenuItem";
 import Separator from "./Separator";
-
-import { Player } from "@lottiefiles/react-lottie-player";
-import * as e1 from "../data/e1.json";
-import * as e2 from "../data/e2.json";
-import * as e3 from "../data/e3.json";
-import * as e4 from "../data/e4.json";
-import * as e5 from "../data/e5.json";
-import * as e6 from "../data/e6.json";
-import * as e7 from "../data/e7.json";
+import EmojiPanel from "./EmojiPanel";
 
 export default function ContextMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [style, setStyle] = useState<{
     menuContainerStyle: React.CSSProperties;
     menuStyle: React.CSSProperties;
-  }>({ menuContainerStyle: {}, menuStyle: {} });
+  }>({ menuContainerStyle: { left: 200, top: 100 }, menuStyle: {} });
 
   useEffect(() => {
     const onContextMenu = (e: MouseEvent) => {
@@ -50,64 +42,6 @@ export default function ContextMenu() {
 
   return (
     <div className="ContextMenu">
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Player
-          autoplay
-          src={e1}
-          controls={false}
-          hover
-          loop
-          style={{ height: "25px", width: "25px" }}
-        />
-        <Player
-          autoplay
-          src={e2}
-          controls={false}
-          hover
-          loop
-          style={{ height: "25px", width: "25px" }}
-        />
-        <Player
-          autoplay
-          src={e3}
-          controls={false}
-          hover
-          loop
-          style={{ height: "25px", width: "25px" }}
-        />
-        <Player
-          autoplay
-          src={e4}
-          controls={false}
-          hover
-          loop
-          style={{ height: "25px", width: "25px" }}
-        />
-        <Player
-          autoplay
-          src={e5}
-          controls={false}
-          hover
-          loop
-          style={{ height: "25px", width: "25px" }}
-        />
-        <Player
-          autoplay
-          src={e6}
-          controls={false}
-          hover
-          loop
-          style={{ height: "25px", width: "25px" }}
-        />
-        <Player
-          autoplay
-          src={e7}
-          controls={false}
-          hover
-          loop
-          style={{ height: "25px", width: "25px" }}
-        />
-      </div>
       <Menu
         isOpen={isOpen}
         onClose={() => {
@@ -116,6 +50,7 @@ export default function ContextMenu() {
         menuContainerStyle={style.menuContainerStyle}
         menuStyle={style.menuStyle}
       >
+        <EmojiPanel />
         <MenuItem icon={<LoopIcon />}>Reply</MenuItem>
         <Separator />
         <MenuItem icon={<CopyIcon />}>Copy Image</MenuItem>

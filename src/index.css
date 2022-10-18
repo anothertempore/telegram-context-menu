@@ -125,3 +125,23 @@ code {
   margin: 0.2rem 0.75rem;
   background-color: rgb(241 241 241);
 }
+
+/* ================================ Separator ================================ */
+
+.EmojiPanel {
+  position: absolute;
+  top: -55px;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #fff;
+  box-shadow: 0 0.25rem 0.5rem 0.125rem #72727226;
+  padding: 5px 1rem;
+  border-radius: 2rem;
+  max-width: 300px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.EmojiPanel::-webkit-scrollbar {
+  display: none;
+}
