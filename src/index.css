@@ -146,9 +146,9 @@ code {
   display: none;
 }
 
-.EmojiPanel .lf-player-container {
-  padding: 0 0.3rem;
+.EmojiPanel .Emoji {
+  padding: 2px 0.2rem;
 }
-.EmojiPanel .lf-player-container:first-child {
+.EmojiPanel .Emoji:first-child {
   padding: 0;
 }

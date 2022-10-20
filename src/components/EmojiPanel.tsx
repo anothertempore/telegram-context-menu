@@ -1,10 +1,14 @@
-import { Player } from "@lottiefiles/react-lottie-player";
+import { memo } from "react";
 import { data } from "../data";
+import EmojiSticker from "./EmojiSticker";
 
-export default function EmojiPanel() {
+function EmojiPanel() {
   return (
     <div className="EmojiPanel">
-      {[
+      {data.map((d, idx) => (
+        <EmojiSticker key={idx} animationData={d} />
+      ))}
+      {/* {[
         ...data,
         ...data,
         // ...data,
@@ -25,7 +29,9 @@ export default function EmojiPanel() {
           // loop
           style={{ height: "32px", width: "32px" }}
         />
-      ))}
+      ))} */}
     </div>
   );
 }
+
+export default memo(EmojiPanel);

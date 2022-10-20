@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@lottiefiles/react-lottie-player': ^3.4.7
   '@radix-ui/react-icons': ^1.1.1
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/react': ^13.4.0
@@ -11,6 +10,7 @@ specifiers:
   '@types/react': ^18.0.21
   '@types/react-dom': ^18.0.6
   '@types/react-transition-group': ^4.4.5
+  lottie-web: ^5.9.6
   react: ^18.2.0
   react-dom: ^18.2.0
   react-scripts: 5.0.1
@@ -19,7 +19,6 @@ specifiers:
   web-vitals: ^2.1.4
 
 dependencies:
-  '@lottiefiles/react-lottie-player': 3.4.7_react@18.2.0
   '@radix-ui/react-icons': 1.1.1_react@18.2.0
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
@@ -28,6 +27,7 @@ dependencies:
   '@types/node': 16.11.62
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
+  lottie-web: 5.9.6
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-scripts: 5.0.1_dbnkmta66qj5qdwz5xpgscew3y
@@ -1925,15 +1925,6 @@ packages:
 
   /@leichtgewicht/ip-codec/2.0.4:
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
-    dev: false
-
-  /@lottiefiles/react-lottie-player/3.4.7_react@18.2.0:
-    resolution: {integrity: sha512-KqkwRiCQPDNzimsXnNSgeJjJlZQ6Fr9JE3OtZdOaGrXovZJ+zDeZNxIwxID8Up0eAdm4zJjudOSc5EJSiGw9RA==}
-    peerDependencies:
-      react: 16 - 18
-    dependencies:
-      lottie-web: 5.9.6
-      react: 18.2.0
     dev: false
 
   /@nicolo-ribaudo/eslint-scope-5-internals/5.1.1-v1:
