@@ -17,7 +17,7 @@ export default function EmojiSticker({ data }: { data: any }) {
       container: ref.current as Element,
       renderer: "canvas",
       loop: false,
-      autoplay: true,
+      autoplay: false,
       animationData,
     });
 
@@ -31,6 +31,8 @@ export default function EmojiSticker({ data }: { data: any }) {
     ref.current?.addEventListener("mouseleave", function () {
       item.stop();
     });
+
+    // TODO: play animation after all items is loaded
   }, [animationData, animationKey]);
 
   return (
