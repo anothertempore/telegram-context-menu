@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from "react";
+import { forwardRef, useLayoutEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 
 type MenuProps = {
@@ -12,7 +12,7 @@ type MenuProps = {
 const Menu = forwardRef((props: MenuProps, ref: any) => {
   const { isOpen, onClose, children, menuContainerStyle, menuStyle } = props;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const onMousedown = (e: Event) => {
       const menu = ref.current;
       const target = e.target as HTMLElement | null;
