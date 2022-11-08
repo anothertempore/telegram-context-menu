@@ -6,34 +6,35 @@ import {
   ResetIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import EmojiPanel from "./EmojiPanel";
 import Menu from "./Menu";
 import MenuItem from "./MenuItem";
 import Separator from "./Separator";
-import EmojiPanel from "./EmojiPanel";
 
 export default function ContextMenu() {
+  const menuRef = useRef<HTMLDivElement>(null);
+
   const [isOpen, setIsOpen] = useState(false);
   const [style, setStyle] = useState<{
     menuContainerStyle: React.CSSProperties;
     menuStyle: React.CSSProperties;
   }>({ menuContainerStyle: { left: 200, top: 100 }, menuStyle: {} });
 
+  const onContextMenu = (e: MouseEvent) => {
+    e.preventDefault();
+    setIsOpen(true);
+
+    let anchorX = e.clientX;
+    let anchorY = e.clientY;
+
+    setStyle({
+      menuContainerStyle: { left: anchorX, top: anchorY },
+      menuStyle: { transformOrigin: `left top` },
+    });
+  };
+
   useEffect(() => {
-    const onContextMenu = (e: MouseEvent) => {
-      e.preventDefault();
-      setIsOpen(true);
-
-      let anchorX = e.clientX;
-      let anchorY = e.clientY;
-
-      // TODO: calculate the menu position
-      setStyle({
-        menuContainerStyle: { left: anchorX, top: anchorY },
-        menuStyle: { transformOrigin: `left top` },
-      });
-    };
-
     window.addEventListener("contextmenu", onContextMenu);
     return () => {
       window.removeEventListener("contextmenu", onContextMenu);
@@ -43,6 +44,7 @@ export default function ContextMenu() {
   return (
     <div className="ContextMenu">
       <Menu
+        ref={menuRef}
         isOpen={isOpen}
         onClose={() => {
           setIsOpen(!isOpen);

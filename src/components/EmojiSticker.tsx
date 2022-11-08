@@ -1,16 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function EmojiSticker({ data }: { data: any }) {
   const [[animationKey, animationData]] = Object.entries(data);
 
   const ref = useRef<HTMLDivElement>(null);
-  const isLoadedRef = useRef(false);
-
-  const [item, setItem] = useState<any>();
+  const itemRef = useRef<any>();
 
   useEffect(() => {
-    if (isLoadedRef.current) return;
-
     // @ts-ignore
     window.lottie.useWebWorker(true);
     // @ts-ignore
@@ -25,9 +21,7 @@ export default function EmojiSticker({ data }: { data: any }) {
 
     // @ts-ignore
     window.lottie.setSpeed(1.5);
-    isLoadedRef.current = item.isLoaded;
 
-    // TODO: first time not working
     ref.current?.addEventListener("mouseenter", function () {
       item.play();
     });
@@ -35,14 +29,10 @@ export default function EmojiSticker({ data }: { data: any }) {
       item.stop();
     });
 
-    setItem(item);
-  }, [animationData, animationKey]);
+    itemRef.current = item;
 
-  useEffect(() => {
-    if (item) {
-      item.play();
-    }
-  }, [item]);
+    return () => item.destroy();
+  }, [animationData, animationKey]);
 
   return (
     <div

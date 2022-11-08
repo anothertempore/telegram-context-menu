@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { forwardRef, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 
 type MenuProps = {
@@ -9,13 +9,12 @@ type MenuProps = {
   menuStyle?: React.CSSProperties;
 };
 
-export default function Menu(props: MenuProps) {
+const Menu = forwardRef((props: MenuProps, ref: any) => {
   const { isOpen, onClose, children, menuContainerStyle, menuStyle } = props;
-  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onMousedown = async (e: Event) => {
-      const menu = menuRef.current;
+    const onMousedown = (e: Event) => {
+      const menu = ref.current;
       const target = e.target as HTMLElement | null;
       if (!menu || !target) {
         return;
@@ -36,6 +35,7 @@ export default function Menu(props: MenuProps) {
     return () => {
       window.removeEventListener("mousedown", onMousedown);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onClose, isOpen]);
 
   return (
@@ -49,16 +49,18 @@ export default function Menu(props: MenuProps) {
         />
       )}
       <CSSTransition
-        nodeRef={menuRef}
+        nodeRef={ref}
         in={isOpen}
         timeout={300}
         classNames="MenuNode"
         unmountOnExit
       >
-        <div className="Menu" ref={menuRef} style={menuStyle}>
+        <div className="Menu" ref={ref} style={menuStyle}>
           {children}
         </div>
       </CSSTransition>
     </div>
   );
-}
+});
+
+export default Menu;
