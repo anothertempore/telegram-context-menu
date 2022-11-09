@@ -1,5 +1,3 @@
 # Telegram Context Menu
 
-## Features
-
-- 
+<image src="./demo.png" />
