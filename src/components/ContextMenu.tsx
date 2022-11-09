@@ -6,11 +6,15 @@ import {
   ResetIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import EmojiPanel from "./EmojiPanel";
 import Menu from "./Menu";
 import MenuItem from "./MenuItem";
 import Separator from "./Separator";
+import toast, { Toaster } from "react-hot-toast";
+
+const notify = (item: string) =>
+  toast(`You clicked ${item} 🎉`, { position: "top-right" });
 
 const EXTRA_MARGIN = 20;
 
@@ -25,24 +29,24 @@ export default function ContextMenu() {
   }>({ menuContainerStyle: { left: 200, top: 100 }, menuStyle: {} });
   const [anchor, setAnchor] = useState({ x: 200, y: 100 });
 
-  const onContextMenu = (e: MouseEvent) => {
-    e.preventDefault();
-    setIsOpen(true);
-
-    let anchorX = e.clientX;
-    let anchorY = e.clientY;
-
-    setAnchor({ x: anchorX, y: anchorY });
-  };
-
   useLayoutEffect(() => {
+    const onContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+      setIsOpen(true);
+
+      let anchorX = e.clientX;
+      let anchorY = e.clientY;
+
+      setAnchor({ x: anchorX, y: anchorY });
+    };
+
     window.addEventListener("contextmenu", onContextMenu);
     return () => {
       window.removeEventListener("contextmenu", onContextMenu);
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isOpen) {
       const rootEl = document.querySelector("#root") as HTMLDivElement;
       const rootRect = rootEl.getBoundingClientRect();
@@ -101,26 +105,66 @@ export default function ContextMenu() {
         menuStyle={style.menuStyle}
       >
         <EmojiPanel ref={emojiPanelRef} />
-        <MenuItem icon={<LoopIcon />}>Reply</MenuItem>
+        <MenuItem
+          icon={<LoopIcon />}
+          onClick={() => {
+            setIsOpen(false);
+            notify("reply");
+          }}
+        >
+          Reply
+        </MenuItem>
         <Separator />
-        <MenuItem icon={<CopyIcon />}>Copy Image</MenuItem>
+        <MenuItem
+          icon={<CopyIcon />}
+          onClick={() => {
+            setIsOpen(false);
+            notify("copy image");
+          }}
+        >
+          Copy Image
+        </MenuItem>
         <Separator />
         <MenuItem
           icon={<Pencil2Icon />}
           onClick={() => {
             setIsOpen(false);
-            // toast("You clicked edit 🎉");
+            notify("edit");
           }}
         >
           Edit
         </MenuItem>
-        <MenuItem icon={<DrawingPinIcon />}>Pin</MenuItem>
-        <MenuItem icon={<ResetIcon />}>Forward</MenuItem>
+        <MenuItem
+          icon={<DrawingPinIcon />}
+          onClick={() => {
+            setIsOpen(false);
+            notify("pin");
+          }}
+        >
+          Pin
+        </MenuItem>
+        <MenuItem
+          icon={<ResetIcon />}
+          onClick={() => {
+            setIsOpen(false);
+            notify("forward");
+          }}
+        >
+          Forward
+        </MenuItem>
         <Separator />
-        <MenuItem icon={<TrashIcon />} danger>
+        <MenuItem
+          icon={<TrashIcon />}
+          danger
+          onClick={() => {
+            setIsOpen(false);
+            notify("delete");
+          }}
+        >
           Delete
         </MenuItem>
       </Menu>
+      <Toaster />
     </div>
   );
 }
